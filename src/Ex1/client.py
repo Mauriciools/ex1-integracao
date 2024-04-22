@@ -1,6 +1,6 @@
 # Import modules
 from socket import *
-from terminalColors import colors
+from terminal_colors import colors
 
 # Define server address and port
 host = '127.0.0.1'
