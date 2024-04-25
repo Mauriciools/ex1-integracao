@@ -10,7 +10,11 @@ def create_table():
 
 def data_entry():
     c.execute(
-        "INSERT INTO Alunos VALUES('Pedro', 2213482, 19, 2022, 'Cursando')"
+        """INSERT INTO Alunos(Nome, Matricula, Idade, Ingresso, Situacao) VALUES 
+            ('Joao', 10114385, 28, 2022, 'Formado'),
+            ('Pedro', 13100001, 25, 2020, 'Trancamento'),
+            ('Maísa', 11280821, 26, 2023, 'Cursando'),
+            ('Patrick', 14204123, 24, 2022, 'Desistiu');"""
     )
 
 create_table()
