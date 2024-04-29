@@ -6,7 +6,7 @@ server = xmlrpc.client.ServerProxy('http://localhost:8005')
 
 print("Operations with two integer numbers.")
 
-while(True):
+while (True):
     try:
         # Input for two integer numbers
         num1 = int(input("\nType first number: "))
