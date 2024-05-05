@@ -13,19 +13,10 @@ s.bind((host, port))
 s.listen(1)
 s.setblocking(0)
 
-while (True):
-    # Try to accept a new client connection
-    try:
-        connection, address = s.accept()
-        print("Connected by:", address)
-    except:
-        # Otherwise just skips to the next iteration
-        continue
-
+def send_file_to_client(filename, connection):
     print("\nSending file to client...")
 
     # Open specified file as read binary mode
-    filename = "FT_test.txt"
     f = open(filename, 'rb')
 
     # Read file content
@@ -40,9 +31,7 @@ while (True):
     f.close()
     print("File successfully sent!")
 
-    # Wait time for file changes on client side
-    time.sleep(5)
-
+def receive_and_update_file(filename, connection):
     print("\nUpdating server's root file now...")
 
     # Open specified file as write binary mode
@@ -72,6 +61,25 @@ while (True):
     # Close file
     f.close()
     print("File successfully updated on server side!")
+
+while (True):
+    # Try to accept a new client connection
+    try:
+        connection, address = s.accept()
+        print("Connected by:", address)
+    except:
+        # Otherwise just skips to the next iteration
+        continue
+
+    # Define the file name and send its content to the client
+    filename = "FT_test.txt"
+    send_file_to_client(filename, connection)
+
+    # Wait time for file changes on client side
+    time.sleep(5)
+
+    # Receive updated file from the client and overwrites the root file with new updated content
+    receive_and_update_file(filename, connection)
     
     # Close connection with the client
     connection.close()
